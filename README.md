@@ -34,3 +34,11 @@ La aplicación está dirigida a cualquier persona que quiera gestionar sus finan
     3. Usuarios sin conocimientos técnicos que necesiten una herramienta sencilla
 
 En versiones más avanzadas, se podría incluir soporte para múltiples usuarios con cuentas independientes.
+
+## Pantallas / Componentes
+
+Una pantalla principal que es la que va a contener todas funciones de nuestra aplicación. Cuando entremos en la aplicación nos aparecerán tres cuadros con los elementos: Balance, Ingresos y Gastos.
+
+Para ir añadiendo nuevas transacciones tendremos un botón que al pulsar nos ampliará un desplegable con la opción de definir los detalles de la transacción.
+
+Al final de la página tendremos un historial para ir viendo tanto los ingresos como los gastos que vayamos teniendo.
