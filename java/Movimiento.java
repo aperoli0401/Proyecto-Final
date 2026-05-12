@@ -1,4 +1,4 @@
-public class Movimiento {
+public abstract  class Movimiento {
     private int id;
     private double cantidad;
     private String descripcion;
