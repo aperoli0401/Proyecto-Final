@@ -53,13 +53,6 @@ public abstract  class Movimiento {
 
     public abstract void aplicarMovimiento();
 
-    public double getCantidad(){
-        return cantidad;
-    }
-    public String getDescripcion(){
-        return descripcion;
-    }
-
     @Override
     public String toString() {
         return "ID: " + id +

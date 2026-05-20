@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Login {
     
     private ArrayList<Usuario> usuarios;
@@ -10,7 +12,7 @@ public class Login {
         usuarios.add(usuario);
     }
 
-    public boolean iniciarSesion(String nombre, String contraseña) {
+    public Usuario iniciarSesion(String nombre, String contraseña) {
 
         for (Usuario usuario : usuarios) {
 
@@ -18,12 +20,12 @@ public class Login {
                     && usuario.getContraseña().equals(contraseña)) {
 
                 System.out.println("Inicio de sesión correcto");
-                return true;
+                return usuario;
             }
         }
 
         System.out.println("Usuario o contraseña incorrectos");
-        return false;
+        return null;
     }
 
     public void cerrarSesion() {

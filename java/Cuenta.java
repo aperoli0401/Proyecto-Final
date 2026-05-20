@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Cuenta {
     private double balance;
     private double ingresos;
@@ -41,7 +43,6 @@ public class Cuenta {
         }
     }
     
-    }
     public double calcularBalance(){
         balance = ingresos - gastos;
         return balance;
@@ -70,4 +71,3 @@ public class Cuenta {
         return movimientos;
     }
 }
-

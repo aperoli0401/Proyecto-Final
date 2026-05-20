@@ -1,16 +1,30 @@
+import java.util.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        Login login = new Login();
-
+        Scanner sc = new Scanner(System.in);
+        //Creamos la lista de usuarios
+        List<Usuario> usuarios = new ArrayList<>();
+        //Creamos los usuarios
         Usuario usuario1 = new Usuario("Adrian", "1234");
         Usuario usuario2 = new Usuario("Alejandro", "4567");
         Usuario usuario3 = new Usuario("Raul", "0000");
+        //Añadimos los usuarios a la lista
+        usuarios.add(usuario1);
+        usuarios.add(usuario2);
+        usuarios.add(usuario3);
 
-        login.registrarUsuario(usuario1);
+        System.out.println("--------Inicio de sesión--------");
+        //Pedimos el nombre al usuario y lo guardamos
+        System.out.print("Nombre de usuario: ");
+        String nombre = sc.nextLine();
+        //Pedimos la contraseña al usuario y la guardamos
+        System.out.print("Contraseña: ");
+        String contraseña = sc.nextLine();
 
-        boolean acceso = login.iniciarSesion("Adrian", "1234");
+        Usuario usuarioActual = iniciarSesion(nombre, contraseña);
 
         if (acceso) {
 
