@@ -5,16 +5,17 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        //Creamos la lista de usuarios
-        List<Usuario> usuarios = new ArrayList<>();
-        //Creamos los usuarios
+        // LOGIN
+        Login login = new Login();
+        // USUARIOS
         Usuario usuario1 = new Usuario("Adrian", "1234");
         Usuario usuario2 = new Usuario("Alejandro", "4567");
         Usuario usuario3 = new Usuario("Raul", "0000");
-        //Añadimos los usuarios a la lista
-        usuarios.add(usuario1);
-        usuarios.add(usuario2);
-        usuarios.add(usuario3);
+        // REGISTRAR USUARIOS
+        login.registrarUsuario(usuario1);
+        login.registrarUsuario(usuario2);
+        login.registrarUsuario(usuario3);
+        
 
         System.out.println("--------Inicio de sesión--------");
         //Pedimos el nombre al usuario y lo guardamos
@@ -24,9 +25,19 @@ public class Main {
         System.out.print("Contraseña: ");
         String contraseña = sc.nextLine();
 
-        Usuario usuarioActual = iniciarSesion(nombre, contraseña);
+        Usuario usuarioActual = login.iniciarSesion(nombre, contraseña);
 
-        if (acceso) {
+        if (usuarioActual != null) {
+            //Opción para usar después un menú de acciones
+             int opcion;
+            //Menú de opciones
+             System.out.println();
+                System.out.println("--------MENÚ--------");
+                System.out.println("1. Añadir ingreso");
+                System.out.println("2. Añadir gasto");
+                System.out.println("3. Ver balance");
+                System.out.println("4. Ver historial");
+                System.out.println("5. Salir");
 
             Ingreso ingreso1 = new Ingreso(
                     1,
