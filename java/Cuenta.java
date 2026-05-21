@@ -7,47 +7,59 @@ public class Cuenta {
 
 
     private ArrayList<Movimiento> movimientos;
-
+    
+    // Creamos la lista de los movimientos
     public Cuenta() {
         movimientos = new ArrayList<>();
     }
 
+    // Creamos el metodo para poder añadir movimientos
     public void añadirMovimiento(Movimiento movimiento) {
 
+        // Aqui añadimos un movimiento a la lista
         movimientos.add(movimiento);
 
+        // Comprobamos si el movimiento es un ingreso
         if (movimiento instanceof Ingreso) {
-            ingresos += movimiento.getCantidad();
+            ingresos += movimiento.getCantidad(); // Si es así toma el valor de la cantidad y lo suma a la variable ingreso
         }
 
+        // Comprobamos si el movimiento es un gasto
         if (movimiento instanceof Gasto) {
-            gastos += movimiento.getCantidad();
+            gastos += movimiento.getCantidad(); // Si es así toma el valor de la cantidad y lo suma a la variable gasto
         }
 
+        // LLamamos al metodo calcularBalance
         calcularBalance();
     }
 
+    // Creamos el metodo eliminar movimiento 
     public void eliminarMovimiento(Movimiento movimiento) {
 
+        // Elimina el movimiento de la lista si se encuentra en la lista
         if (movimientos.remove(movimiento)) {
 
+            // Comprobamos si el movimiento es un ingreso 
             if (movimiento instanceof Ingreso) {
-                ingresos -= movimiento.getCantidad();
+                ingresos -= movimiento.getCantidad(); // Si es así elimina el valor de la cantidad del movimiento a ingresos
             }
-
+            // Comprobamos si el movimiento es un gasto
             if (movimiento instanceof Gasto) {
-                gastos -= movimiento.getCantidad();
+                gastos -= movimiento.getCantidad(); // Si es así elimina el vlaor de la cantidad del movimiento a gastos
             }
 
+            // LLamamos al metodo calcularBalance
             calcularBalance();
         }
     }
+    
     
     public double calcularBalance(){
         balance = ingresos - gastos;
         return balance;
     }
 
+    
     public void mostrarMovimientos() {
 
         for (Movimiento movimiento : movimientos) {
@@ -70,4 +82,5 @@ public class Cuenta {
     public ArrayList<Movimiento> getMovimientos() {
         return movimientos;
     }
+
 }
