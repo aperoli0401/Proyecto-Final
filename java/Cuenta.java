@@ -82,5 +82,28 @@ public class Cuenta {
     public ArrayList<Movimiento> getMovimientos() {
         return movimientos;
     }
+    
+    public static void mostrarBalance(Usuario usuario) {
+
+        System.out.println();
+        System.out.println("=== RESUMEN FINANCIERO ===");
+
+        System.out.println("Ingresos: "
+                + usuario.getCuenta().getIngresos() + "€");
+
+        System.out.println("Gastos: "
+                + usuario.getCuenta().getGastos() + "€");
+
+        System.out.println("Balance: "
+                + usuario.getCuenta().getBalance() + "€");
+    }
+
+    public static void mostrarHistorial(Usuario usuario) {
+
+        System.out.println();
+        System.out.println("=== HISTORIAL ===");
+
+        usuario.getCuenta().mostrarMovimientos();
+    }
 
 }

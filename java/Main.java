@@ -30,8 +30,10 @@ public class Main {
         if (usuarioActual != null) {
             //Opción para usar después un menú de acciones
              int opcion;
-            //Menú de opciones
-             System.out.println();
+
+             do{
+                //Menú de opciones
+                System.out.println();
                 System.out.println("--------MENÚ--------");
                 System.out.println("1. Añadir ingreso");
                 System.out.println("2. Añadir gasto");
@@ -39,37 +41,35 @@ public class Main {
                 System.out.println("4. Ver historial");
                 System.out.println("5. Salir");
 
-            Ingreso ingreso1 = new Ingreso(
-                    1,
-                    1200,
-                    "Nómina",
-                    "12/05/2026",
-                    Categoria.SALARIO
-            );
+                System.out.print("Seleccione una opción: ");
+                opcion = sc.nextInt();
+                sc.nextLine();
 
-            Gasto gasto1 = new Gasto(
-                    2,
-                    50,
-                    "Compra supermercado",
-                    "12/05/2026",
-                    Categoria.COMIDA
-            );
+                switch (opcion){
+                    case 1:
+                        Ingreso.añadirIngreso(usuarioActual, sc);
+                        break;
+                    case 2:
+                        Gasto.añadirGasto(usuarioActual, sc);
+                        break;
 
-            usuario1.getCuenta().añadirMovimiento(ingreso1);
-            usuario1.getCuenta().añadirMovimiento(gasto1);
+                    case 3:
+                        Cuenta.mostrarBalance(usuarioActual);
+                        break;
 
-            ingreso1.aplicarMovimiento();
-            gasto1.aplicarMovimiento();
+                    case 4:
+                        Cuenta.mostrarHistorial(usuarioActual);
+                        break;
 
-            System.out.println();
-            System.out.println("=== RESUMEN FINANCIERO ===");
-            System.out.println("Ingresos: " + usuario1.getCuenta().getIngresos() + "€");
-            System.out.println("Gastos: " + usuario1.getCuenta().getGastos() + "€");
-            System.out.println("Balance: " + usuario1.getCuenta().getBalance() + "€");
+                    case 5:
+                        System.out.println("Sesión cerrada");
+                        break;
 
-            System.out.println();
-            System.out.println("=== HISTORIAL ===");
-            usuario1.getCuenta().mostrarMovimientos();
+                    default:
+                        System.out.println("Opción incorrecta");	
+                }
+             } while (opcion != 5);
         }
+        sc.close();
     }
 }
