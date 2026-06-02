@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Ingreso extends Movimiento{
@@ -9,10 +10,25 @@ public class Ingreso extends Movimiento{
     }
     
     public static void añadirIngreso(Usuario usuario, Scanner sc) {
-
-        System.out.print("Cantidad ingreso: ");
-        double cantidad = sc.nextDouble();
-        sc.nextLine();
+    	
+    	double cantidad;
+    	
+    	//Repetimos mientras el usuario introduzca una cantidad no valida
+    	do {
+    		//Pedimos la cantidad
+    		System.out.print("Cantidad ingreso: ");
+            cantidad = sc.nextDouble();
+            sc.nextLine();
+            
+            //Comprobamos que la cantidad sea mayor que 0
+            if (cantidad <= 0) {
+            	System.out.println("La cantidad debe ser mayor que 0.");
+            }
+            
+        // Si la cantidad es menor o igual que 0, vuelve a pedirla
+    	} while (cantidad <= 0);
+    	
+        
 
         System.out.print("Descripción: ");
         String descripcion = sc.nextLine();
@@ -23,7 +39,7 @@ public class Ingreso extends Movimiento{
                 usuario.getCuenta().getMovimientos().size() + 1,
                 cantidad,
                 descripcion,
-                "20/05/2026",
+                LocalDate.now().toString(),
                 categoria
         );
         usuario.getCuenta().añadirMovimiento(ingreso);
