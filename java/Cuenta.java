@@ -59,13 +59,6 @@ public class Cuenta {
         return balance;
     }
 
-    
-    public void mostrarMovimientos() {
-
-        for (Movimiento movimiento : movimientos) {
-            System.out.println(movimiento);
-        }
-    }
 
     public double getBalance() {
         return balance;
@@ -83,27 +76,28 @@ public class Cuenta {
         return movimientos;
     }
     
-    public static void mostrarBalance(Usuario usuario) {
+    // Mostramos el resumen financiero
+    public void mostrarBalance() {
 
         System.out.println();
-        System.out.println("=== RESUMEN FINANCIERO ===");
+        System.out.println("------ RESUMEN FINANCIERO ------");
 
-        System.out.println("Ingresos: "
-                + usuario.getCuenta().getIngresos() + "€");
+        System.out.println("Ingresos: "+ ingresos + "€");
 
-        System.out.println("Gastos: "
-                + usuario.getCuenta().getGastos() + "€");
+        System.out.println("Gastos: "+ gastos + "€");
 
-        System.out.println("Balance: "
-                + usuario.getCuenta().getBalance() + "€");
+        System.out.println("Balance: "+ balance + "€");
     }
-
-    public static void mostrarHistorial(Usuario usuario) {
+    
+    //Mostramos el historial completo
+    public void mostrarHistorial() {
 
         System.out.println();
-        System.out.println("=== HISTORIAL ===");
+        System.out.println("------ HISTORIAL ------");
 
-        usuario.getCuenta().mostrarMovimientos();
+        for (Movimiento movimiento : movimientos) {
+            System.out.println(movimiento);
+        }
     }
 
 }

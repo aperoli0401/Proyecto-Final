@@ -54,11 +54,11 @@ public class Main {
                         break;
 
                     case 3:
-                        Cuenta.mostrarBalance(usuarioActual);
+                        usuarioActual.getCuenta().mostrarBalance();
                         break;
 
                     case 4:
-                        Cuenta.mostrarHistorial(usuarioActual);
+                        usuarioActual.getCuenta().mostrarHistorial();;
                         break;
 
                     case 5:
