@@ -6,16 +6,20 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class RegistroGrafico {
 
-    public static void abrir(Login login) {
+    public static void abrir(Login login, Frame loginFrame) {
 
         Frame frame = new Frame("Registro");
 
         frame.setLayout(new FlowLayout());
 
         frame.setSize(300, 200);
+        
+        Utilidades.centrarVentana(frame);
 
         frame.setVisible(true);
 
@@ -51,6 +55,8 @@ public class RegistroGrafico {
                         dialogo.setLayout(new FlowLayout());
 
                         dialogo.setSize(250,120);
+                        
+                        Utilidades.centrarDialogo(dialogo);
 
                         dialogo.add(new Label("Debe rellenar todos los campos."));
 
@@ -82,6 +88,8 @@ public class RegistroGrafico {
                         dialogo.setLayout(new FlowLayout());
 
                         dialogo.setSize(250,120);
+                        
+                        Utilidades.centrarDialogo(dialogo);
 
                         dialogo.add(new Label("Ese usuario ya existe."));
 
@@ -118,6 +126,8 @@ public class RegistroGrafico {
                     dialogo.setLayout(new FlowLayout());
 
                     dialogo.setSize(250,120);
+                    
+                    Utilidades.centrarDialogo(dialogo);
 
                     dialogo.add(new Label("Usuario registrado correctamente."));
 
@@ -131,6 +141,8 @@ public class RegistroGrafico {
                             dialogo.dispose();
 
                             frame.dispose();
+                            
+                            loginFrame.setVisible(true);
 
                         }
 
@@ -165,6 +177,20 @@ public class RegistroGrafico {
 
         frame.add(btnRegistrar);
         frame.add(btnCancelar);
+        
+        // Para cerrar la ventana desde la X
+        frame.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                frame.dispose();
+
+            }
+
+        });
+
+        frame.setVisible(true);
 
     }
 

@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
@@ -6,10 +7,12 @@ import java.awt.Label;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MenuGrafico {
 
-    public static void abrir(Usuario usuario) {
+    public static void abrir(Usuario usuario, Login login) {
 
         // Creamos la ventana
         Frame frame = new Frame("Menú Principal");
@@ -17,6 +20,8 @@ public class MenuGrafico {
         frame.setLayout(new FlowLayout());
 
         frame.setSize(300, 250);
+        
+        Utilidades.centrarVentana(frame);
 
         // Botones
         Button btnIngreso = new Button("Añadir ingreso");
@@ -32,14 +37,16 @@ public class MenuGrafico {
 
                 // Abrir ventana de ingreso
                 if (e.getSource() == btnIngreso) {
-
-                    IngresoGrafico.abrir(usuario);
+                	
+                	frame.setVisible(false);
+                    IngresoGrafico.abrir(usuario, frame);
                 }
 
                 // Abrir ventana de gasto
                 else if (e.getSource() == btnGasto) {
-
-                    GastoGrafico.abrir(usuario);
+                	
+                	frame.setVisible(false);
+                    GastoGrafico.abrir(usuario, frame);
                 }
 
                 // Mostrar balance
@@ -50,6 +57,10 @@ public class MenuGrafico {
                     dialogo.setLayout(new FlowLayout());
 
                     dialogo.setSize(250, 180);
+                    
+                    Utilidades.centrarDialogo(dialogo);
+                    
+                    dialogo.add(new Label("----------------------------"));
 
                     dialogo.add(new Label("Ingresos: "
                             + usuario.getCuenta().getIngresos() + " €"));
@@ -59,6 +70,8 @@ public class MenuGrafico {
 
                     dialogo.add(new Label("Balance: "
                             + usuario.getCuenta().getBalance() + " €"));
+                    
+                    dialogo.add(new Label("----------------------------"));
 
                     Button cerrar = new Button("Cerrar");
 
@@ -80,37 +93,36 @@ public class MenuGrafico {
                 // Mostrar historial
                 else if (e.getSource() == btnHistorial) {
 
-                    Dialog dialogo = new Dialog(frame, "Historial", true);
+                	Dialog dialogo = new Dialog(frame, "Historial", true);
 
-                    dialogo.setLayout(new FlowLayout());
+                	dialogo.setLayout(new BorderLayout());
 
-                    dialogo.setSize(500, 300);
+                	dialogo.setSize(700, 450);
 
-                    TextArea area = new TextArea(12, 50);
+                	TextArea area = new TextArea();
+                	area.setEditable(false);
 
-                    for (Movimiento movimiento :
-                            usuario.getCuenta().getMovimientos()) {
+                	area.setText("------ HISTORIAL ------\n\n");
 
-                        area.append(movimiento.toString() + "\n");
-                    }
+                	for (Movimiento movimiento : usuario.getCuenta().getMovimientos()) {
+                	    area.append(movimiento + "\n");
+                	}
 
-                    dialogo.add(area);
+                	Button cerrar = new Button("Cerrar");
 
-                    Button cerrar = new Button("Cerrar");
+                	cerrar.addActionListener(new ActionListener() {
+                	    @Override
+                	    public void actionPerformed(ActionEvent e) {
+                	        dialogo.dispose();
+                	    }
+                	});
 
-                    cerrar.addActionListener(new ActionListener() {
+                	dialogo.add(area, BorderLayout.CENTER);
+                	dialogo.add(cerrar, BorderLayout.SOUTH);
 
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
+                	Utilidades.centrarDialogo(dialogo);
 
-                            dialogo.dispose();
-                        }
-
-                    });
-
-                    dialogo.add(cerrar);
-
-                    dialogo.setVisible(true);
+                	dialogo.setVisible(true);
                 }
 
                 // Cerrar sesión
@@ -118,7 +130,7 @@ public class MenuGrafico {
 
                     frame.dispose();
 
-                    LoginGrafico.abrir(new Login());
+                    LoginGrafico.abrir(login);
                 }
             }
         };
@@ -134,6 +146,18 @@ public class MenuGrafico {
         frame.add(btnBalance);
         frame.add(btnHistorial);
         frame.add(btnCerrar);
+
+        // Para cerrar la ventana desde la X
+        frame.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                frame.dispose();
+
+            }
+
+        });
 
         frame.setVisible(true);
     }

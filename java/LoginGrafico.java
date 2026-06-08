@@ -5,6 +5,8 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class LoginGrafico {
 
@@ -16,6 +18,8 @@ public class LoginGrafico {
         frame.setLayout(new FlowLayout());
 
         frame.setSize(300, 200);
+        
+        Utilidades.centrarVentana(frame);
 
         frame.setVisible(true);
 
@@ -54,14 +58,15 @@ public class LoginGrafico {
 
                         frame.dispose();
 
-                        MenuGrafico.abrir(usuario);
+                        MenuGrafico.abrir(usuario, login);
                     }
                 }
 
                 // Registrarse
                 else if (e.getSource() == btnRegistro) {
-
-                    RegistroGrafico.abrir(login);
+                	
+                	frame.setVisible(false);
+                    RegistroGrafico.abrir(login, frame);
                 }
 
                 // Salir
@@ -85,5 +90,19 @@ public class LoginGrafico {
         frame.add(btnLogin);
         frame.add(btnRegistro);
         frame.add(btnSalir);
+        
+        // Para cerrar la ventana desde la X
+        frame.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                frame.dispose();
+
+            }
+
+        });
+
+        frame.setVisible(true);
     }
 }
