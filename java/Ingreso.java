@@ -43,9 +43,17 @@ public class Ingreso extends Movimiento{
                 categoria
         );
         usuario.getCuenta().añadirMovimiento(ingreso);
-
+        
+        //Insertamos ingreso en Base de datos
+        MovimientoDAO dao = new MovimientoDAO();
+        
+        dao.insertarMovimiento(ingreso, usuario.getId(), "INGRESO");
+        
+        //Confirmamos la operacion
         ingreso.aplicarMovimiento();
+        
     }
+    
     @Override
     public void aplicarMovimiento(){
         System.out.println("Ingreso añadido correctamente");

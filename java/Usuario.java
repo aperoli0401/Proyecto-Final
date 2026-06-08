@@ -1,4 +1,5 @@
 public class Usuario {
+	private int id;
     private String nombre;
     private String contraseña;
     private Cuenta cuenta;
@@ -27,6 +28,14 @@ public class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

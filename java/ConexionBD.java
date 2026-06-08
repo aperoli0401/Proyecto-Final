@@ -4,16 +4,20 @@ import java.sql.SQLException;
 
 public class ConexionBD {
 
-	public static void main(String[] args) {
-		try {
-			Connection con = DriverManager.getConnection(
-			        "jdbc:mariadb://localhost:3306/gestor_finanzas?allowPublicKeyRetrieval=true&useSSL=false", "root", "");
-		
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	private static final String URL =
+            "jdbc:mariadb://localhost:3306/gestor_finanzas?allowPublicKeyRetrieval=true&useSSL=false";
 
+    private static final String USER = "root";
+
+    private static final String PASSWORD = "";
+
+    public static Connection conectar() throws SQLException {
+
+        return DriverManager.getConnection(
+                URL,
+                USER,
+                PASSWORD
+        );
 	}
 
 }
