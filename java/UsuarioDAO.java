@@ -21,13 +21,6 @@ public class UsuarioDAO {
             ps.setString(2, usuario.getContraseña());
 
             ps.executeUpdate();
-            
-            /*//Obtener el id generado por MySQL
-            ResultSet rs = ps.getGeneratedKeys();
-            
-            if (rs.next()) {
-            	usuario.setId(rs.getInt(1));
-            }*/
 
             System.out.println("Usuario guardado");
 
